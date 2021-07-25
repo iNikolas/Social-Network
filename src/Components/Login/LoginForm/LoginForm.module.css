@@ -1,0 +1,12 @@
+.formButton {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: linen;
+    width: 20%;
+}
+
+.error {
+    font-size: small;
+    font-weight: bold;
+    color: crimson;
+}

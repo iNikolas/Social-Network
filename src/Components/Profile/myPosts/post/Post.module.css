@@ -1,0 +1,10 @@
+.Post {
+    margin-top: 10px;
+    border: 1px dotted grey;
+}
+
+.Post img {
+    width: 60px;
+    height: auto;
+    border-radius: 60px;
+}

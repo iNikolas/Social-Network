@@ -1,0 +1,14 @@
+.textArea {
+    display: block;
+    margin-top: 5px;
+    margin-left: 30%;
+    width: 40%;
+    clear: left;
+
+}
+
+.button {
+    display: block;
+    margin-top: 5px;
+    margin-left: 30%;
+}

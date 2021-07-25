@@ -1,0 +1,28 @@
+.header {
+    grid-area: h;
+    background-color: blueviolet;
+    position: relative;
+}
+
+.header img {
+    width: 40px;
+}
+
+.loginBlock, .logoutLink {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.loginBlock{
+    float: right;
+}
+
+.logoutLink {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.loginBlock:hover, .logoutLink:hover {
+    background-color: lightsteelblue;
+}

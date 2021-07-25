@@ -1,0 +1,9 @@
+.content {
+    padding: 0px;
+}
+
+.content img {
+    width: 100%;
+    /*height: 250px;*/
+    position: center;
+}

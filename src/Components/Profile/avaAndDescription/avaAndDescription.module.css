@@ -1,0 +1,85 @@
+.fullName {
+    font-weight: bolder;
+    font-family: "PT Sans", Arvo, "Josefin Sans", Merriweather, Montserrat, fantasy;
+    text-align: center;
+    font-size: large;
+    display: block;
+    border-bottom: 1px solid lightskyblue;
+}
+
+.aboutMe {
+    font-weight: normal;
+    font-style: italic;
+    font-family: "PT Sans", Arvo, "Josefin Sans", Merriweather, Montserrat, fantasy;
+    text-align: center;
+    font-size: xx-small;
+    display: block;
+    color: black;
+}
+
+.infoWrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-left: 1px dashed black;
+    border-right: 1px dashed black;
+    min-height: 140px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.photos, .restOfInformation {
+    display: block;
+    border: 1px solid lightsteelblue;
+    width: auto;
+}
+
+.photos {
+    float: left;
+    margin-bottom: 15px;
+    width: 134px;
+}
+
+.restOfInformation {
+    text-align: left;
+    width: auto;
+    margin-left: 141px;
+}
+
+.photos img {
+    width: 130px;
+    border: 2px solid cadetblue;
+    border-radius: 5px;
+    display: block;
+}
+
+.workStatus {
+    font-weight: bold;
+    font-style: italic;
+    font-family: monospace;
+    font-size: xx-small;
+    display: block;
+    color: black;
+    width: auto;
+}
+
+.jobDescription {
+    font-weight: normal;
+    font-style: italic;
+    font-family: Serif;
+    font-size: small;
+    color: black;
+    text-align: center;
+}
+
+.social {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: small;
+    color: black;
+}
+
+.socialLink {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: x-small;
+}

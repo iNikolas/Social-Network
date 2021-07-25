@@ -1,0 +1,11 @@
+.item {
+    color: azure;
+}
+
+.item a {
+    color: azure;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: lightpink;}

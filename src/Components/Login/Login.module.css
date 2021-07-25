@@ -1,0 +1,16 @@
+.wrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.wrapper {
+    text-align:center
+}
+
+.logoImg {
+    display: inline-block;
+    width: 100%;
+}

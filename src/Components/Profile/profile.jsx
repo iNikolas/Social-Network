@@ -6,7 +6,6 @@ import MyPostsContainer from "./myPosts/myPostsContainer";
 
 class Profile extends React.Component {
     render() {
-        console.log('render profile')
         let {profileStatusInputArea, ...anotherProps} = {...this.props.profile}
         let {editProfileStatusField, ...someOtherProps} = {...this.props}
         let {id, ...moreUselessProps} = {...this.props.authData}

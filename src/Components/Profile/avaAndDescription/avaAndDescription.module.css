@@ -37,6 +37,14 @@
     float: left;
     margin-bottom: 15px;
     width: 134px;
+    position: relative;
+}
+
+.photos input {
+    position: absolute;
+    top: 0;
+    left: 0;
+opacity: 5;
 }
 
 .restOfInformation {

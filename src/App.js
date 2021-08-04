@@ -69,3 +69,5 @@ let MainApp = () => {
 }
 
 export default MainApp
+
+window.store = store

@@ -4,13 +4,14 @@ const ADD_POST = 'ADD-POST'
 const EDIT_PROFILE_STATUS_AREA = 'EDIT-PROFILE-STATUS-AREA'
 const GET_PROFILE_INFO = 'GET-PROFILE-INFO'
 const SHOW_WAITING_ANIMATION = 'SHOW-WAITING-ANIMATION'
+const CHANGE_AVATAR = 'CHANGE-AVATAR'
 
 export const profileReducerAC = {
     addPost: (text) => ({type: ADD_POST, payload: text}),
-    // editTextField: (text) => ({type: EDIT_TEXT_AREA, text: text}),
     editProfileStatusField: (text) => ({type: EDIT_PROFILE_STATUS_AREA, payload: text}),
     getProfileInfo: (response) => ({type: GET_PROFILE_INFO, payload: response}),
     showWaitingAnimation: (waitingCondition) => ({type: SHOW_WAITING_ANIMATION, waitingCondition: waitingCondition}),
+    changeAvatar: (urls) => ({type: CHANGE_AVATAR, payload: urls}),
     updateProfileContainerOnRequestThunkCreator: function (id) {
         return (dispatch) => {
             dispatch(this.showWaitingAnimation(true))
@@ -32,8 +33,21 @@ export const profileReducerAC = {
         return (dispatch) => {
             samuraiJsAPI.profile.getStatus(id).then(response => {
                 if (response === '' || !response) response = '...'
-                    dispatch(this.editProfileStatusField(response))
+                dispatch(this.editProfileStatusField(response))
             })
+        }
+    },
+    changeAvatarThunkCreator: function (file) {
+        return async (dispatch) => {
+            try {
+                const response = await samuraiJsAPI.profile.photo(file)
+                if (response.resultCode === 1) throw new Error(response.messages[0])
+                dispatch(this.changeAvatar(response.data))
+            } catch (err) {
+                alert(err.message)
+                console.log(err)
+            }
+
         }
     }
 }
@@ -111,6 +125,19 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 waitingAnimation: action.waitingCondition
 
+            }
+        case CHANGE_AVATAR:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    photos: {
+                        ...state.data.photos,
+                        small: action.payload.photos.small ??state.data.photos.small,
+                        large: action.payload.photos.large ?? state.data.photos.large
+                    }
+
+                }
             }
         default:
             return state

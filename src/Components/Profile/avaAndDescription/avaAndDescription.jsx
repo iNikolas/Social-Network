@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import css from './avaAndDescription.module.css'
 import avatar from "../../../img/Avatar/defaultAvatar.jpg";
 
 const AvaAndDescription = (props) => {
+
+    const fileEL = useRef(null)
+    const [changeAvatar, setChangeAvatar] = useState(false)
+    const showAvatarDownloading = (isCurrentUser) => {
+        if (isCurrentUser) fileEL.current.click()
+    }
+    const onFileDownloading = (event) => {
+        let formData = new FormData()
+        formData.append('image', event.currentTarget.files[0])
+        props.changeAvatarThunkCreator(formData)
+    }
+
     let fullName, aboutMe, photoURL, jobStatus, jobStatusText, jobDescription, contactsKeysArray, contactsObject,
-        contacts, id
+        contacts, id, currentUserId, isCurrentUser
+
+
     if (props.profile.data === null) {
         return null
     } else {
@@ -30,6 +44,8 @@ const AvaAndDescription = (props) => {
                                                                                      href={contactsObject[social]}>{contactsObject[social]}</a>
             </div>)
         id = props.profile.data.userId
+        currentUserId = props.authData.id
+        isCurrentUser = currentUserId === id
     }
     let styleGreen = {
         color: 'green',
@@ -41,6 +57,7 @@ const AvaAndDescription = (props) => {
         backgroundColor: 'white',
         textAlign: 'center'
     }
+
     return (
         <div>
             {(props.profile.data === null) ? null : <div>
@@ -48,8 +65,10 @@ const AvaAndDescription = (props) => {
                 <span className={css.aboutMe}>{`«${(aboutMe === null) ? '...' : aboutMe}»`}</span>
                 <div className={css.infoWrapper}>
                     <div className={css.photos}>
-                        <img src={photoURL === null ? avatar : photoURL}
-                             title={fullName}/>
+                        <img onClick={() => showAvatarDownloading(isCurrentUser)}
+                             src={photoURL === null ? avatar : photoURL} title={fullName}/>
+                        <input accept='image/*' onChange={onFileDownloading} ref={fileEL} id='download-avatar' style={{visibility: 'hidden'}}
+                                               type='file'/>
                         <div className={css.jobDescription}>
                             <span className={css.workStatus}
                                   style={jobStatus ? styleGreen : styleGrey}>{jobStatusText}</span>

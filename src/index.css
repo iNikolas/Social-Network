@@ -7,7 +7,8 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #FFF url('./img/background/pngegg.png') repeat;
+    background: #FFF url('./img/background/девушка_силуэт_закат.jpg') repeat;
+    background-size: 100%;
 }
 
 code {

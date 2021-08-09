@@ -6,12 +6,7 @@ import MyPostsForm from "./MyPostsForm/MyPostsForm";
 
 class MyPosts extends React.Component {
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        // return nextProps != this.props
-    }
-
     render() {
-        console.log('render my Posts')
         let postsList = this.props.posts.map(post => <Post avatar={post.avatar} texting={post.texting}
                                                            likeAmount={post.likeAmount}/>)
         let onAddPost = (event) => {

@@ -11,7 +11,8 @@ class LoginForm extends React.Component {
                   render={
                       ({handleSubmit, invalid, submitting}) => {
                           return <form onSubmit={handleSubmit}>
-                              <Field validate={minLength(6)} placeholder={'Enter your Login'} name={'email'}
+                              <Field
+                                  validate={minLength(6)} placeholder={'Enter your Login'} name={'email'}
                                      render={Input}/>
                               <Field validate={composeValidators(required, minLength(6))}
                                      type={'password'}

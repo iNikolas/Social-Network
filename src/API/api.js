@@ -18,6 +18,7 @@ const samuraiJsAPI = {
         status: (status) => axiosInstance.put('profile/status/', {status: status}),
         getStatus: (id) => axiosInstance.get(`profile/status/${id}`).then(response => response.data),
         photo: (file) => axiosInstance.put('profile/photo/', file, {headers: {'Content-Type': 'multipart/form-data'}}).then(response => response.data),
+        profile: (profileData) => axiosInstance.put('profile', profileData).then(response => response.data)
     },
     users: {
         users: (count= 10, page = 1, term = '', friend = null) => axiosInstance.get(`users/?page=${page}&count=${count}&term=${term}&friend=${friend}&friend=${friend}`).then(response => response.data)

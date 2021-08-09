@@ -49,6 +49,21 @@ export const profileReducerAC = {
             }
 
         }
+    },
+
+    updateProfileData: function (profileData, currentUserId) {
+        return async (dispatch) => {
+            try {
+            const response = await samuraiJsAPI.profile.profile(profileData)
+                await this.updateProfileContainerOnRequestThunkCreator(currentUserId)
+                if (response.resultCode === 1) throw new Error(response.messages[0])
+                return response
+            } catch (err) {
+                alert(err.message)
+                console.log(err)
+                return err
+            }
+        }
     }
 }
 

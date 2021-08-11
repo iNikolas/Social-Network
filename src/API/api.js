@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 const samuraiJsAPI = {
     auth: {
         authMe: () => axiosInstance.get('auth/me').then(response => response.data),
-        login: (email, password, rememberMe = false) => axiosInstance.post('auth/login', {email, password, rememberMe}).then(response => response.data),
+        login: (email, password, rememberMe = false, captcha) => axiosInstance.post('auth/login', {email, password, rememberMe, captcha}).then(response => response.data),
         logout: () => axiosInstance.delete('auth/login').then(response => response.data)
     },
     profile: {
@@ -29,6 +29,9 @@ const samuraiJsAPI = {
             follow: (id) => axiosInstance.post(`follow/${id}`).then(response => response.data),
             unfollow: (id) => axiosInstance.delete(`follow/${id}`).then(response => response.data)
         }
+    },
+    security: {
+        getCaptchaUrl: () => axiosInstance.get('security/get-captcha-url').then(response => response.data)
     }
 
 }

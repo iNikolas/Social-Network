@@ -19,6 +19,13 @@ class LoginForm extends React.Component {
                                      placeholder={'Enter your Password'} name={'password'} render={Input}/>
                               <Field name={'rememberMe'} type={'checkbox'} render={Input}/>
                               {this.props.authInfo.loginFailedInfo && <div className={css.error}>{this.props.authInfo.loginFailedInfo?.map(message => <div>{message}</div>)}</div>}
+                              {this.props.authInfo.loginFailedInfo && this.props.authInfo.captchaUrl && <div className={css.error}><img src={this.props.authInfo.captchaUrl} alt='anti-bot symbols'/>
+                              <div>
+                                  <Field
+                                      validate={minLength(4)} placeholder={'Enter your Captcha'} name={'captcha'}
+                                      render={Input}/>
+                              </div>
+                              </div>}
                               <button type="submit" disabled={submitting || invalid} className={css.formButton} >Login
                               </button>
                           </form>
@@ -30,7 +37,7 @@ class LoginForm extends React.Component {
 
 
     onSubmit = event => {
-        this.props.loginThunkCreator(event.email, event.password, event.rememberMe)
+        this.props.loginThunkCreator(event.email, event.password, event.rememberMe, event.captcha ?? null)
     }
 
 }

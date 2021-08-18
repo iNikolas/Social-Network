@@ -7,13 +7,13 @@ const SHOW_WAITING_ANIMATION = 'SHOW-WAITING-ANIMATION'
 const CHANGE_AVATAR = 'CHANGE-AVATAR'
 
 export const profileReducerAC = {
-    addPost: (text) => ({type: ADD_POST, payload: text}),
-    editProfileStatusField: (text) => ({type: EDIT_PROFILE_STATUS_AREA, payload: text}),
-    getProfileInfo: (response) => ({type: GET_PROFILE_INFO, payload: response}),
-    showWaitingAnimation: (waitingCondition) => ({type: SHOW_WAITING_ANIMATION, waitingCondition: waitingCondition}),
-    changeAvatar: (urls) => ({type: CHANGE_AVATAR, payload: urls}),
-    updateProfileContainerOnRequestThunkCreator: function (id) {
-        return (dispatch) => {
+    addPost: (text: string) => ({type: ADD_POST, payload: text}),
+    editProfileStatusField: (text: string) => ({type: EDIT_PROFILE_STATUS_AREA, payload: text}),
+    getProfileInfo: (response: Promise<object>) => ({type: GET_PROFILE_INFO, payload: response}),
+    showWaitingAnimation: (waitingCondition: boolean) => ({type: SHOW_WAITING_ANIMATION, waitingCondition: waitingCondition}),
+    changeAvatar: (urls: string) => ({type: CHANGE_AVATAR, payload: urls}),
+    updateProfileContainerOnRequestThunkCreator: function (id: number) {
+        return (dispatch: Function) => {
             dispatch(this.showWaitingAnimation(true))
             samuraiJsAPI.profile.userId(id).then(response => {
                     dispatch(this.getProfileInfo(response))
@@ -22,23 +22,23 @@ export const profileReducerAC = {
             )
         }
     },
-    confirmStatusFieldThunkCreator: function (text) {
-        return (dispatch) => {
+    confirmStatusFieldThunkCreator: function (text: string) {
+        return () => {
             samuraiJsAPI.profile.status(text).catch(Error => {
                 alert(`Ошибка, поменять статус не получилось\n${Error}`)
             })
         }
     },
-    getStatusFieldThunkCreator: function (id) {
-        return (dispatch) => {
+    getStatusFieldThunkCreator: function (id: number) {
+        return (dispatch: Function) => {
             samuraiJsAPI.profile.getStatus(id).then(response => {
                 if (response === '' || !response) response = '...'
                 dispatch(this.editProfileStatusField(response))
             })
         }
     },
-    changeAvatarThunkCreator: function (file) {
-        return async (dispatch) => {
+    changeAvatarThunkCreator: function (file: File) {
+        return async (dispatch: Function) => {
             try {
                 const response = await samuraiJsAPI.profile.photo(file)
                 if (response.resultCode === 1) throw new Error(response.messages[0])
@@ -51,8 +51,8 @@ export const profileReducerAC = {
         }
     },
 
-    updateProfileData: function (profileData, currentUserId) {
-        return async (dispatch) => {
+    updateProfileData: function (profileData: Object, currentUserId: number) {
+        return async () => {
             try {
             const response = await samuraiJsAPI.profile.profile(profileData)
                 await this.updateProfileContainerOnRequestThunkCreator(currentUserId)
@@ -102,13 +102,13 @@ export let initialState = {
         }
     ],
     // postInputArea: '',
-    data: null,
+    data: null as any,
     waitingAnimation: false,
     count: 0,
     profileStatusInputArea: 'Standard Text'
 }
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             return {

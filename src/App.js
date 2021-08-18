@@ -1,7 +1,7 @@
 import './App.css'
 import React from "react"
 import NavBar from './Components/navBar/navBar';
-import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
+import {BrowserRouter, Route, Switch, withRouter, Redirect} from "react-router-dom";
 import News from "./Components/News/news";
 import Music from "./Components/Music/music";
 import Settings from "./Components/Settings/settings";
@@ -33,7 +33,7 @@ class App extends React.Component {
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Switch>
-                        <Route exact path={'/'} render={() => <ProfileContainer/>}/>
+                        <Route exact path={'/'} render={() => < Redirect to='/profile' />}/>
                         <Route path={'/profile/:userId?/'} render={() => <ProfileContainer/>}/>
                         <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
                         <Route path={'/news'} render={() => <News/>}/>

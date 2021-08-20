@@ -2,11 +2,22 @@ import {authReducerAC} from "./authReducer";
 
 const INITIALIZING = 'INITIALIZING'
 
-let initialState = {
+let initialState: InitialStateType = {
     initialized: false
 }
 
-export const appReducerAC = {
+type InitializeAcType = { type: typeof INITIALIZING }
+
+export type InitialStateType = {
+    initialized: boolean
+}
+
+type AppReducerAcType = {
+    initialize: () => InitializeAcType
+    initializationThunkCreator: () => (dispatch: Function) => void
+}
+
+export const appReducerAC: AppReducerAcType = {
     initialize: () => ({type: INITIALIZING}),
     initializationThunkCreator: function () {
         return (dispatch) => {
@@ -17,7 +28,9 @@ export const appReducerAC = {
     }
 }
 
-export const appReducer = (state = initialState, action) => {
+type AppReducerType = (state: InitialStateType, action: InitializeAcType) => InitialStateType
+
+const appReducer:AppReducerType = (state = initialState, action: InitializeAcType) => {
     switch (action.type) {
         case INITIALIZING:
             return {

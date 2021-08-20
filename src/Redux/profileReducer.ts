@@ -6,7 +6,46 @@ const GET_PROFILE_INFO = 'GET-PROFILE-INFO'
 const SHOW_WAITING_ANIMATION = 'SHOW-WAITING-ANIMATION'
 const CHANGE_AVATAR = 'CHANGE-AVATAR'
 
-export const profileReducerAC = {
+type AddPostType = {
+    type: typeof ADD_POST
+    payload: string
+}
+
+type EditProfileStatusAreaType = {
+    type: typeof EDIT_PROFILE_STATUS_AREA
+    payload: string
+}
+
+type GetProfileInfoType = {
+    type: typeof GET_PROFILE_INFO
+    payload: Promise<object>
+}
+
+type ShowWaitingAnimationType = {
+    type: typeof SHOW_WAITING_ANIMATION
+    waitingCondition: boolean
+}
+
+type ChangeAvatarType = {
+    type: typeof CHANGE_AVATAR
+    payload: string
+}
+
+
+type profileReducerAcType = {
+    addPost: (text: string) => AddPostType
+    editProfileStatusField: (text: string) =>  EditProfileStatusAreaType
+    getProfileInfo: (response: Promise<object>) => GetProfileInfoType
+    showWaitingAnimation: (waitingCondition: boolean) => ShowWaitingAnimationType
+    changeAvatar: (urls: string) => ChangeAvatarType
+    updateProfileContainerOnRequestThunkCreator: (id: number) => (dispatch: Function) => void
+    confirmStatusFieldThunkCreator: (text: string) => () => void
+    getStatusFieldThunkCreator: (id: number) => (dispatch: Function) => void
+    changeAvatarThunkCreator: (file: File) => (dispatch: Function) => void
+    updateProfileData: (profileData: Object, currentUserId: number) => () => Promise<Object>
+}
+
+export const profileReducerAC: profileReducerAcType = {
     addPost: (text: string) => ({type: ADD_POST, payload: text}),
     editProfileStatusField: (text: string) => ({type: EDIT_PROFILE_STATUS_AREA, payload: text}),
     getProfileInfo: (response: Promise<object>) => ({type: GET_PROFILE_INFO, payload: response}),
@@ -67,8 +106,18 @@ export const profileReducerAC = {
     }
 }
 
+export type InitialStateType = {
 
-export let initialState = {
+    posts: Array<object>
+    postInputArea: string
+    data: any
+    waitingAnimation: boolean
+    count: number
+    profileStatusInputArea: string
+}
+
+
+export let initialState: InitialStateType = {
     posts: [
         {
             avatar: 'https://www.blast.hk/attachments/64805/',
@@ -101,14 +150,14 @@ export let initialState = {
             id: 4
         }
     ],
-    // postInputArea: '',
-    data: null as any,
+    postInputArea: '',
+    data: null,
     waitingAnimation: false,
     count: 0,
     profileStatusInputArea: 'Standard Text'
 }
 
-export const profileReducer = (state = initialState, action: any) => {
+export const profileReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             return {

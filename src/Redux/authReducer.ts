@@ -8,7 +8,19 @@ const WRITE_LOGIN_FAILED_INFO = 'WRITE-LOGIN-FAILED-INFO'
 const RESET_LOGIN_FAILED_INFO = 'RESET-LOGIN-FAILED-INFO'
 const GET_CAPTCHA_URL_SUCCESS = 'GET-CAPTCHA-URL-SUCCESS'
 
-let initialState = {
+type InitialStateType = {
+    data: {
+        id: number | null
+        login: string | null
+        email: string | null
+    }
+    isAuthorized: boolean
+    isLoading: boolean
+    loginFailedInfo: string | null
+    captchaUrl: string | null
+}
+
+let initialState: InitialStateType = {
     data: {
         id: null,
         login: null,
@@ -17,11 +29,24 @@ let initialState = {
     isAuthorized: false,
     isLoading: true,
     loginFailedInfo: null,
-    fakeCounter: 0,
     captchaUrl: null
 }
 
-export const authReducerAC = {
+type authReducerAcType = {
+    setCurrentUserInfo: (authInfo: any) => {type: typeof GET_AUTHORIZATION_INFO, authInfo: any},
+    getCaptchaUrlSuccess: (captchaUrl: string) => {type: typeof GET_CAPTCHA_URL_SUCCESS, payload: string}
+    resetCurrentUserInfo: () => {type: typeof RESET_AUTHORIZATION_INFO}
+    setAuthorization: (authStance: number) => {type: typeof SET_AUTHORIZATION, switch: number}
+    setLoading: (isLoading: boolean) => {type: typeof SET_ISLOADING, payload: boolean}
+    writeLoginFailedInfo: (serverRespond: any) => ({type: typeof WRITE_LOGIN_FAILED_INFO, payload: any}),
+    resetLoginFailedInfo: () => {type: typeof RESET_LOGIN_FAILED_INFO}
+    requestAuthorizationThunkCreator: () => (dispatch: Function) => void
+    loginThunkCreator: (email: string, password: string, rememberMe: boolean, captcha: string) => (dispatch: Function) => void
+    logoutThunkCreator: () => (dispatch: Function) => void
+    getCaptchaUrl: () => void
+}
+
+export const authReducerAC: authReducerAcType = {
     setCurrentUserInfo: (authInfo) => ({type: GET_AUTHORIZATION_INFO, authInfo: authInfo}),
     getCaptchaUrlSuccess: (captchaUrl) => ({type: GET_CAPTCHA_URL_SUCCESS, payload: captchaUrl}),
     resetCurrentUserInfo: () => ({type: RESET_AUTHORIZATION_INFO}),
@@ -30,14 +55,12 @@ export const authReducerAC = {
     writeLoginFailedInfo: (serverRespond) => ({type: WRITE_LOGIN_FAILED_INFO, payload: serverRespond}),
     resetLoginFailedInfo: () => ({type: RESET_LOGIN_FAILED_INFO}),
     requestAuthorizationThunkCreator: function () {
-        return (dispatch) => {
+        return async (dispatch) => {
             dispatch(this.setLoading(true))
-            return samuraiJsAPI.auth.authMe()
-                .then(result => {
-                    dispatch(this.setCurrentUserInfo(result))
-                    dispatch(this.setAuthorization(result.resultCode))
-                    dispatch(this.setLoading(false))
-                })
+            const result = await samuraiJsAPI.auth.authMe()
+            dispatch(this.setCurrentUserInfo(result))
+            dispatch(this.setAuthorization(result.resultCode))
+            dispatch(this.setLoading(false))
         }
     },
     loginThunkCreator: function (email, password, rememberMe, captcha) {
@@ -72,7 +95,7 @@ export const authReducerAC = {
         }
     },
     getCaptchaUrl: function () {
-        return async dispatch => {
+        return async (dispatch: Function) => {
             try {
                 const response = await samuraiJsAPI.security.getCaptchaUrl()
 
@@ -87,13 +110,8 @@ export const authReducerAC = {
     }
 }
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case 'FAKE':
-            return {
-                ...state,
-                fakeCounter: state.fakeCounter + 1
-            }
         case WRITE_LOGIN_FAILED_INFO:
             return {
                 ...state,
@@ -150,4 +168,4 @@ export const authReducer = (state = initialState, action) => {
     }
 }
 
-export default authReducer
+export default authReducer//

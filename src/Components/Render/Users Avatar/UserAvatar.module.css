@@ -1,9 +1,9 @@
-.avatar img{
-    border-radius: 100%;
-    margin: 2px;
+.avatar img {
+  border-radius: 100%;
+  margin: 2px;
 }
 
 .avatarDiv {
-    display: inline;
-    /*margin: 5px;*/
+  display: inline;
+  /*margin: 5px;*/
 }

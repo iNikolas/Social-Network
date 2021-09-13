@@ -1,47 +1,48 @@
-import {authReducerAC} from "./authReducer";
+import { authReducerAC } from "./authReducer";
 
-const INITIALIZING = 'INITIALIZING'
+const INITIALIZING = "INITIALIZING";
 
 let initialState: InitialStateType = {
-    initialized: false
-}
+  initialized: false,
+};
 
-type InitializeAcType = { type: typeof INITIALIZING }
+type InitializeAcType = { type: typeof INITIALIZING };
 
 export type InitialStateType = {
-    initialized: boolean
-}
+  initialized: boolean;
+};
 
 type AppReducerAcType = {
-    initialize: () => InitializeAcType
-    initializationThunkCreator: () => (dispatch: Function) => void
-}
+  initialize: () => InitializeAcType;
+  initializationThunkCreator: () => (dispatch: Function) => void;
+};
 
 export const appReducerAC: AppReducerAcType = {
-    initialize: () => ({type: INITIALIZING}),
-    initializationThunkCreator: function () {
-        return (dispatch) => {
-            let requestAuthorizationPromise = dispatch(authReducerAC.requestAuthorizationThunkCreator())
+  initialize: () => ({ type: INITIALIZING }),
+  initializationThunkCreator: function () {
+    return (dispatch) => {
+      let requestAuthorizationPromise = dispatch(
+        authReducerAC.requestAuthorizationThunkCreator()
+      );
 
-            requestAuthorizationPromise.then(() => dispatch(this.initialize()))
-        }
-    }
-}
+      requestAuthorizationPromise.then(() => dispatch(this.initialize()));
+    };
+  },
+};
 
-type AppReducerType = (state: InitialStateType, action: InitializeAcType) => InitialStateType
+const appReducer = (
+  state = initialState,
+  action: InitializeAcType
+): InitialStateType => {
+  switch (action.type) {
+    case INITIALIZING:
+      return {
+        ...state,
+        initialized: true,
+      };
+    default:
+      return state;
+  }
+};
 
-const appReducer:AppReducerType = (state = initialState, action: InitializeAcType) => {
-    switch (action.type) {
-        case INITIALIZING:
-            return {
-                ...state,
-                initialized: true
-            }
-        default:
-            return state
-
-
-    }
-}
-
-export default appReducer
+export default appReducer;

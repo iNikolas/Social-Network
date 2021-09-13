@@ -1,89 +1,89 @@
 .pages {
-    text-align: center;
+  text-align: center;
 }
 
 .selectedPage {
-    font-weight: bold;
-    text-decoration: underline;
-    padding: 1px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 1px;
 }
 
 .selectedPage:hover {
-    background-color: crimson;
-    cursor: pointer;
+  background-color: crimson;
+  cursor: pointer;
 }
 
 .unselectedPage {
-    text-decoration: none;
-    padding: 1px;
+  text-decoration: none;
+  padding: 1px;
 }
 
 .unselectedPage:hover {
-    background-color: crimson;
-    cursor: pointer;
+  background-color: crimson;
+  cursor: pointer;
 }
 
 div.table {
-    display: table;
-    border: thin dashed #dc143c;
-    margin-bottom: 2px;
+  display: table;
+  border: thin dashed #dc143c;
+  margin-bottom: 2px;
 }
 
 div.tableRow {
-    display: table-row;
+  display: table-row;
 }
 
 section.avatarBlock {
-    display: table-cell;
-    text-align: right;
+  display: table-cell;
+  text-align: right;
 }
 
 section.info {
-    display: table-cell;
-    vertical-align: top;
-    width: 100%;
-    /*horiz-align: left;*/
+  display: table-cell;
+  vertical-align: top;
+  width: 100%;
+  /*horiz-align: left;*/
 }
 
 img.avatar {
-    width: 70px;
-    border: medium solid lightslategrey;
-    margin: 5px 5px 0px 5px;
+  width: 70px;
+  border: medium solid lightslategrey;
+  margin: 5px 5px 0px 5px;
 }
 
 img.avatar:hover {
-    cursor: pointer;
-    border: medium solid crimson;
+  cursor: pointer;
+  border: medium solid crimson;
 }
 
 div.avatarBlock {
-    display: block;
+  display: block;
 }
 
 div.wrapper {
-    width: 60%;
-    margin: auto;
-    padding: 10px;
-    border: thin solid lightslategrey;
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+  border: thin solid lightslategrey;
 }
 
 div.button {
-    text-align: center;
-    margin: 3px;
-    font-weight: bold;
+  text-align: center;
+  margin: 3px;
+  font-weight: bold;
 }
 
 div.button button {
-    border-radius: 8px;
-    color: brown;
-    background-color: lightslategrey;
+  border-radius: 8px;
+  color: brown;
+  background-color: lightslategrey;
 }
 
 div.button button:hover {
-    color: cornflowerblue;
-    background-color: wheat;
+  color: cornflowerblue;
+  background-color: wheat;
 }
 
 .caption {
-    font-weight: bold;
+  font-weight: bold;
 }

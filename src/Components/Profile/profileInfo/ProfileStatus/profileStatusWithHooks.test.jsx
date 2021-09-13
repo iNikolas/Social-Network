@@ -1,11 +1,11 @@
-import TestRenderer from 'react-test-renderer'
+import TestRenderer from "react-test-renderer";
 
 function Link(props) {
-    return <a href={props.page}>{props.children}</a>;
+  return <a href={props.page}>{props.children}</a>;
 }
 
 const testRenderer = TestRenderer.create(
-    <Link page="https://www.facebook.com/">Facebook</Link>
-)
+  <Link page="https://www.facebook.com/">Facebook</Link>
+);
 
 console.log(testRenderer.toJSON());

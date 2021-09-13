@@ -1,17 +1,17 @@
 .error span {
-    display: block;
-    text-align: center;
-    font-size: small;
-    font-weight: bold;
-    color: crimson;
+  display: block;
+  text-align: center;
+  font-size: small;
+  font-weight: bold;
+  color: crimson;
 }
 
 .textAreaError {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .textArea {
-    display: block;
-    width: 99%;
-    margin-top: 5px;
+  display: block;
+  width: 99%;
+  margin-top: 5px;
 }

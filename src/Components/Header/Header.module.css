@@ -1,28 +1,30 @@
 .header {
-    grid-area: h;
-    background-color: blueviolet;
-    position: relative;
+  grid-area: h;
+  background-color: blueviolet;
+  position: relative;
 }
 
 .header img {
-    width: 40px;
+  width: 40px;
 }
 
-.loginBlock, .logoutLink {
-    color: goldenrod;
-    text-decoration: none;
+.loginBlock,
+.logoutLink {
+  color: goldenrod;
+  text-decoration: none;
 }
 
-.loginBlock{
-    float: right;
+.loginBlock {
+  float: right;
 }
 
 .logoutLink {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
-.loginBlock:hover, .logoutLink:hover {
-    background-color: lightsteelblue;
+.loginBlock:hover,
+.logoutLink:hover {
+  background-color: lightsteelblue;
 }

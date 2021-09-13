@@ -1,43 +1,40 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:
-'dialogsItems messages';
-grid-gap: 2px;
-padding: 3px;
-    background-color: coral;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "dialogsItems messages";
+  grid-gap: 2px;
+  padding: 3px;
+  background-color: coral;
 }
 
 .dialogsItems {
-    grid-area: dialogsItems;
-    padding: 5px;
-    background-color: cornflowerblue;
-
+  grid-area: dialogsItems;
+  padding: 5px;
+  background-color: cornflowerblue;
 }
 
 .user {
-    margin-top: 5px;
-    border-bottom: 1px solid black;
-    text-align: right;
+  margin-top: 5px;
+  border-bottom: 1px solid black;
+  text-align: right;
 }
 
-.user a{
-text-decoration: none;
-    display: inline;
+.user a {
+  text-decoration: none;
+  display: inline;
 }
 
 .user a.active {
-    color: crimson;
-    /*background-color: hotpink;*/
+  color: crimson;
+  /*background-color: hotpink;*/
 }
 
 .messages {
-    grid-area: messages;
-    padding: 5px;
-    background-color: cornflowerblue;
+  grid-area: messages;
+  padding: 5px;
+  background-color: cornflowerblue;
 }
 
 .message {
-
 }

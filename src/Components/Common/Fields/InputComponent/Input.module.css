@@ -1,14 +1,14 @@
 .error {
-    font-size: small;
-    font-weight: bold;
-    color: crimson;
+  font-size: small;
+  font-weight: bold;
+  color: crimson;
 }
 
 .inputError {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .input {
-    display: inline-block;
-    align: center;
+  display: inline-block;
+  align: center;
 }

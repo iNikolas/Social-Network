@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Test</title>
-</head>
-<body>
+  </head>
+  <body>
+    <script>
+      let userNamesArray = [
+        { name: "Николай Лебедь", id: 0 },
+        { name: "Андрей Огнев", id: 1 },
+        { name: "Иван Черняк", id: 2 },
+        { name: "Дмитрий Диканенко", id: 3 },
+        { name: "Владимир Петрив", id: 4 },
+      ];
 
-<script>
-    let userNamesArray = [
-        {name: 'Николай Лебедь',
-            id: 0},
-        {name: 'Андрей Огнев',
-            id: 1},
-        {name: 'Иван Черняк',
-            id: 2},
-        {name: 'Дмитрий Диканенко',
-            id: 3},
-        {name: 'Владимир Петрив',
-            id: 4}
-    ]
+      let userList = [];
 
-    let userList = []
-
-    for (let i = 0; i < userNamesArray.length; i++) {
-        let someUserData = userNamesArray[i]
-        let atrValues = Object.keys(someUserData)
-        let j = atrValues.length
-        let d = 0
-        let atrText = []
+      for (let i = 0; i < userNamesArray.length; i++) {
+        let someUserData = userNamesArray[i];
+        let atrValues = Object.keys(someUserData);
+        let j = atrValues.length;
+        let d = 0;
+        let atrText = [];
         while (d < j) {
-            let currentAtrValue = atrValues[d]
-            atrText[d] = someUserData[currentAtrValue]
-            d++
+          let currentAtrValue = atrValues[d];
+          atrText[d] = someUserData[currentAtrValue];
+          d++;
         }
-        let tagText = `<DialogItems ${atrValues[0]}='${atrText[0]}' ${atrValues[1]}='${atrText[1]}'/>;`
-        userList.unshift(tagText)
-    }
+        let tagText = `<DialogItems ${atrValues[0]}='${atrText[0]}' ${atrValues[1]}='${atrText[1]}'/>;`;
+        userList.unshift(tagText);
+      }
 
-    let total = userList.join(' ')
-    console.log(total)
-</script>
-</body>
+      let total = userList.join(" ");
+      console.log(total);
+    </script>
+  </body>
 </html>

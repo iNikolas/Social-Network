@@ -1,10 +1,8 @@
-import React from 'react'
-import css from './music.module.css'
+import React from "react";
+import css from "./music.module.css";
 
 const Music = (props) => {
-    return (
-        <div className={css.content}>Music</div>
-    )
-}
+  return <div className={css.content}>Music</div>;
+};
 
-export default Music
+export default Music;

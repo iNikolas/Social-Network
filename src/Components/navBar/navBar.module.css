@@ -1,14 +1,15 @@
 .navigation {
-    grid-area: n;
-    background-color: chartreuse;
-    padding: 20px;
+  grid-area: n;
+  background-color: chartreuse;
+  padding: 20px;
 }
 
-.item a:link, .item a:visited {
-    color: azure;
-    text-decoration: none;
+.item a:link,
+.item a:visited {
+  color: azure;
+  text-decoration: none;
 }
 
 .item a.active {
-    color: lightpink;
+  color: lightpink;
 }

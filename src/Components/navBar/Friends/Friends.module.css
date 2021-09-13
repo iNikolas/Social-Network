@@ -1,11 +1,12 @@
 .item {
-    color: azure;
+  color: azure;
 }
 
 .item a {
-    color: azure;
-    text-decoration: none;
+  color: azure;
+  text-decoration: none;
 }
 
 .item a.active {
-    color: lightpink;}
+  color: lightpink;
+}

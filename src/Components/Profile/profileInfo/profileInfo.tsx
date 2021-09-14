@@ -2,7 +2,13 @@ import React from "react";
 import css from "./profileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatus/profileStatusWithHooks";
 
-const ProfileInfo = (props) => {
+export interface PropsType {
+  id: number;
+  profileStatusInputArea: string;
+  editProfileStatusField: (text: string) => void;
+}
+
+const ProfileInfo: React.FC<PropsType> = (props) => {
   return (
     <div className={css.content}>
       <img

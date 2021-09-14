@@ -31,7 +31,7 @@ type ChangeAvatarType = {
   payload: string;
 };
 
-type profileReducerAcType = {
+export type ProfileReducerAcType = {
   addPost: (text: string) => AddPostType;
   editProfileStatusField: (text: string) => EditProfileStatusAreaType;
   getProfileInfo: (response: Promise<object>) => GetProfileInfoType;
@@ -49,7 +49,7 @@ type profileReducerAcType = {
   ) => () => Promise<Object>;
 };
 
-export const profileReducerAC: profileReducerAcType = {
+export const profileReducerAC: ProfileReducerAcType = {
   addPost: (text: string) => ({ type: ADD_POST, payload: text }),
   editProfileStatusField: (text: string) => ({
     type: EDIT_PROFILE_STATUS_AREA,
@@ -117,8 +117,15 @@ export const profileReducerAC: profileReducerAcType = {
   },
 };
 
+interface PostType {
+  avatar: string;
+  texting: string;
+  likeAmount: number;
+  id: number;
+}
+
 export type InitialStateType = {
-  posts: Array<object>;
+  posts: Array<PostType>;
   postInputArea: string;
   data: any;
   waitingAnimation: boolean;

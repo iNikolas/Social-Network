@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { PropsFromRedux } from "./UsersWithAxiosContainer";
 
 interface Props extends PropsFromRedux {
-  onPageChanged: (pageNumber: number) => void;
   updateOnRequest: () => void;
+  onPageChanged: (pageNumber: number) => void;
 }
 
 const UsersWithAxios: React.FC<Props> = (props) => {

@@ -30,8 +30,8 @@ export const setUsersInfoAC: SetUsersInfoAC = (usersInfoData) => ({
   usersInfo: usersInfoData,
 });
 
-type InitialStateType = {
-  generalInfo: Array<null | {
+export type InitialStateType = {
+  generalInfo: Array<{
     name: string;
     id: number;
     avatar: string;
@@ -41,7 +41,7 @@ type InitialStateType = {
       country: string;
     };
   }>;
-  friendsList: Array<null | {
+  friendsList: Array<{
     id: number;
   }>;
 };

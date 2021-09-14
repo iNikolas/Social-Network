@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { compose } from "redux";
-import { connect } from "react-redux";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
 import { profileReducerAC } from "../../../../Redux/profileReducer";
+import { PropsType } from "../profileInfo";
 
-const ProfileStatusWithHooks = (props) => {
-  let Style = {
+const connector = connect(null, { ...profileReducerAC });
+export type ProfileStatusWithHooksPropsType = ConnectedProps<typeof connector>;
+
+const ProfileStatusWithHooks: React.FC<
+  ProfileStatusWithHooksPropsType & PropsType
+> = (props) => {
+  const Style: CSSProperties = {
     display: "block",
     textAlign: "center",
     border: "1px dashed grey",
     margin: "auto",
   };
-
-  let [editMode, setEditMode] = useState(false);
-  let [statusField, changeStatusField] = useState(props.profileStatusInputArea);
+  const [editMode, setEditMode] = useState(false);
+  const [statusField, changeStatusField] = useState(
+    props.profileStatusInputArea
+  );
   useEffect(() => {
     changeStatusField(props.profileStatusInputArea);
   }, [props.profileStatusInputArea]);
@@ -24,7 +30,7 @@ const ProfileStatusWithHooks = (props) => {
     setEditMode(true);
   };
 
-  const deactivateEditMode = (event) => {
+  const deactivateEditMode = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value;
     if (!text) {
       text = "...";
@@ -33,12 +39,12 @@ const ProfileStatusWithHooks = (props) => {
     setEditMode(false);
   };
 
-  const editStatusField = (event) => {
+  const editStatusField = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value;
     props.editProfileStatusField(text);
   };
 
-  const confirmStatusField = (event) => {
+  const confirmStatusField = (event: React.KeyboardEvent<HTMLInputElement>) => {
     let text = props.profileStatusInputArea;
     if (event.key === "Enter") {
       props.confirmStatusFieldThunkCreator(text);
@@ -71,6 +77,4 @@ const ProfileStatusWithHooks = (props) => {
   );
 };
 
-export default compose(connect(null, { ...profileReducerAC }))(
-  ProfileStatusWithHooks
-);
+export default connector(ProfileStatusWithHooks);

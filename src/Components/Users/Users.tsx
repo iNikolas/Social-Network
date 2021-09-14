@@ -1,7 +1,10 @@
 import React from "react";
 import css from "./Users.module.css";
+import { PropsFromUsersContainer } from "./UsersContainer";
 
-let Users = (props) => {
+interface Props extends PropsFromUsersContainer {}
+
+let Users: React.FC<Props> = (props) => {
   let friendsId = props.usersInfo.friendsList.map((entry) => entry.id);
   let avatars = props.usersInfo.generalInfo.map((user) => {
     let isFollowed = false;

@@ -50,7 +50,7 @@ interface usersInfoWithAxiosAcType {
   followUnfollowThunkTemplate: FollowUnfollowThunkTemplateType;
 }
 
-type RegularActionType = {
+export type RegularActionType = {
   type: string;
   [key: string]: any;
 };
